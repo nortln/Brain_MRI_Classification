@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'styles.css' %}"/>
+        <title>Brain MRI</title>
+    </head>
+    <body>
+        <script src="{% static 'script.js' %}"></script>
+        <h1>Brain MRI</h1><br>
+        <h2>Upload Image</h2>
+        <h5>classes: Glioma, Meningioma, No Tumor, Pituitary</h5>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image" accept="image/*" onchange="handleImageUpload(this);" required>
+            <input type="submit" value="Scan">
+        </form>
+        <hr>
+        <h1>Scan Results</h1>
+        <p>The Result shows that <b style="color:blue">{{ prediction }}</b> was detected</p>
+        
+        <!-- Image preview -->
+        <div class="image-preview">
+            <h2>Uploaded Image Preview</h2>
+            <img src="" alt="Image Preview">
+        </div>
+        
+    </body>
+</html>
